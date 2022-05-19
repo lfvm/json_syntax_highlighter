@@ -30,39 +30,41 @@ defmodule SyntaxHighlighter do
     
     cond do
 
-      RegexMatcher.matchObject(text) != nil  ->
-          match = RegexMatcher.matchObject(text)
-          rest = Regex.replace(~r/\{|\}/,text,"")
-          [match, rest]
-
-      RegexMatcher.matchBracket(text) != nil  ->
-        match = RegexMatcher.matchBracket(text)
-        rest = Regex.replace(~r/\[|\]/,text,"")
-        [match, rest]
-
-
+      
+      
       RegexMatcher.matchKeys(text) != nil  ->
         match = RegexMatcher.matchKeys(text)
         rest = Regex.replace(~r/^[ ]*[^\r\n:]+?\s*:/,text,"")
         [match, rest]
-          
-      RegexMatcher.matchStrings(text) != nil  ->
-        match = RegexMatcher.matchStrings(text)
-        rest = Regex.replace(~r/"+[\s,\S]+\w+[\s,\S]+"/,text,"")
+      
+      RegexMatcher.matchBracket(text) != nil  ->
+        match = RegexMatcher.matchBracket(text)
+        rest = Regex.replace(~r/\[|\]/,text,"")
         [match, rest]
-      
-      
-      RegexMatcher.matchOperators(text) != nil  ->
-          match = RegexMatcher.matchOperators(text)
-          rest = Regex.replace(~r/true|false|,|null/,text,"")
+        
+        RegexMatcher.matchStrings(text) != nil  ->
+          match = RegexMatcher.matchStrings(text)
+          rest = Regex.replace(~r/".*?"/,text,"")
           [match, rest]
+          
+          
+          RegexMatcher.matchOperators(text) != nil  ->
+            match = RegexMatcher.matchOperators(text)
+            rest = Regex.replace(~r/true|false|,|null/,text,"")
+            [match, rest]
+            
+            
+          RegexMatcher.matchNumbers(text) != nil  ->
+            match = RegexMatcher.matchNumbers(text)
+            rest = Regex.replace(~r/-?\d+\.?\d*([eE]?[-\+]?\d+)?/,text,"")
+            [match, rest]
+            
+          RegexMatcher.matchObject(text) != nil  ->
+              match = RegexMatcher.matchObject(text)
+              rest = Regex.replace(~r/\{|\}/,text,"")
+              [match, rest]
     
-         
-      RegexMatcher.matchNumbers(text) != nil  ->
-          match = RegexMatcher.matchNumbers(text)
-          rest = Regex.replace(~r/-?\d+\.?\d*([eE]?[-\+]?\d+)?/,text,"")
-          [match, rest]
-      
+    
       true -> IO.puts text
 
 
@@ -91,6 +93,9 @@ defmodule SyntaxHighlighter do
       |> IO.inspect()
       |> Enum.join("")
 
+    #Get and format current date 
+    today = DateTime.utc_now
+    date = Enum.join [today.year, today.month, today.day], "/"
     #Result string that will be appended to the html file
     file = """
       <!DOCTYPE html>
@@ -102,7 +107,7 @@ defmodule SyntaxHighlighter do
         <body>
       <h1>JSON Highlighter</h1>
       <h2>Fernando Valdeon, Salomon Dabbah</h2>
-      <h3>Date: 2022-04-28T10:15:33</h3>
+      <h3>Date: #{date}</h3>
       <div class="output">
       <h3 id='output'>Output:</h3>
       <pre>
@@ -148,6 +153,4 @@ end
 
 
 
-IO.puts SyntaxHighlighter.parse_json("Test_files/example_0.json")
-
-
+IO.puts SyntaxHighlighter.parse_json("Test_files/example_5.json")
