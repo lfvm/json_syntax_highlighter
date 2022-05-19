@@ -1,0 +1,36 @@
+.bracket{
+    color: #5a9dca;
+}
+.object{
+    color: #F8CB2E
+}
+
+.key{
+    color: #F8CB2E
+}
+
+.string{
+    color: #63ed64;
+}
+
+.number,.op{
+    color: #d54a81;
+}
+
+
+h1,h2,h3{
+    color: black;
+    text-align: center;
+}
+
+.output{
+
+    padding: 1em;
+    margin: 1em;
+    background-color: #2d2b58;
+    border-radius: 16px;
+
+}
+#output{
+    color: white;
+}
