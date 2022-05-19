@@ -24,3 +24,8 @@ syntax_highlighter-*.tar
 
 # Temporary files, for example, from tests.
 /tmp/
+
+.gitignore
+.DS_Store
+example_output.html
+output.html
