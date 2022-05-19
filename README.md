@@ -1,21 +1,25 @@
-# SyntaxHighlighter
 
-**TODO: Add description**
+# JSON Syntax Highlighter
+
+Script that reads a json file, and outputs an html that highlihts different tokens of the json 
+like keys, values, braces, etc.
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `syntax_highlighter` to your list of dependencies in `mix.exs`:
+Download this github repository and run the
+following command:
 
-```elixir
-def deps do
-  [
-    {:syntax_highlighter, "~> 0.1.0"}
-  ]
-end
+```bash
+  mix
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/syntax_highlighter>.
+This will output an html fill inside your root folder.
+
+
+    
+## Output Html
+
+After doing the previous step, you can open the output file
+which will look something like this:
+![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
 
