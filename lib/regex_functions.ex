@@ -24,7 +24,7 @@ defmodule RegexMatcher do
 
 
   def matchStrings(text) do
-    match = Regex.run(~r/"+[\s,\S]+\w+[\s,\S]+"/,text)
+    match = Regex.run(~r/".*?"/,text)
     if match != nil do
       "<span class=\"string\">#{match}</span>"
     else 
