@@ -32,7 +32,7 @@ defmodule SyntaxHighlighter do
     
       RegexMatcher.matchKeys(text) != nil  ->
         match = RegexMatcher.matchKeys(text)
-        rest = Regex.replace(~r/^[ ]*[^\r\n:]+?\s*:/,text,"")
+        rest = Regex.replace(~r/"[^"]+"\s*:,?/,text,"")
         [match, rest]
 
       
@@ -98,7 +98,7 @@ defmodule SyntaxHighlighter do
       |> File.stream!()
       |> Enum.map(&parse_line/1)
       |> IO.inspect()
-      |> Enum.join("")
+      |> Enum.join("\n")
 
     #Get and format current date 
     today = DateTime.utc_now
@@ -112,15 +112,15 @@ defmodule SyntaxHighlighter do
           <link rel="stylesheet" href="token_colors.css">
         </head>
         <body>
-      <h1>JSON Highlighter</h1>
-      <h2>Fernando Valdeon, Salomon Dabbah</h2>
-      <h3>Date: #{date}</h3>
-      <div class="output">
-      <h3 id='output'>Output:</h3>
-      <pre>
-        #{lines}
-      </pre>
-      </div>
+          <h1>JSON Highlighter</h1>
+          <h2>Fernando Valdeon, Salomon Dabbah</h2>
+          <h3>Date: #{date}</h3>
+          <div class="output">
+            <h3 id='output'>Output:</h3>
+            <pre>
+              #{lines}
+            </pre>
+          </div>
       </body>
       </html>
     """
@@ -139,8 +139,8 @@ defmodule SyntaxHighlighter do
   #Parameters: line, result and if the remaining line is empty or not 
 
   #Edge cases
-  defp do_parse_line("\n",result,_), do: "#{result}<br>"
-  defp do_parse_line(_,result,true), do: "#{result}<br>"
+  defp do_parse_line("\n",result,_), do: result
+  defp do_parse_line(_,result,true), do: result
 
 
   defp do_parse_line(line, result,_) do
@@ -159,4 +159,4 @@ end
 
 
 
-IO.puts SyntaxHighlighter.parse_json("Test_files/example_4.json")
+IO.puts SyntaxHighlighter.parse_json("Test_files/example_0.json")

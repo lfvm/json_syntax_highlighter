@@ -14,7 +14,7 @@ defmodule RegexMatcher do
 
 
   def matchKeys(text) do
-    match = Regex.run(~r/(?m)^[ ]*[^\r\n:]+?\s*:/,text)
+    match = Regex.run(~r/"[^"]+"\s*:,?/,text)
     if match != nil do
       "<span class=\"key\">#{match}</span>"
     else 
