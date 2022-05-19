@@ -72,4 +72,14 @@ defmodule RegexMatcher do
     end
   end
 
+
+  def matchSpaces(text) do 
+    match = Regex.run(~r/^\s+/,text)
+    if match != nil do
+      "<span#{match}</span>"
+    else 
+      nil
+    end
+  end
+
 end

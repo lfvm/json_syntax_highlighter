@@ -29,40 +29,47 @@ defmodule SyntaxHighlighter do
   def matchJson(text) do
     
     cond do
-
-      
-      
+    
       RegexMatcher.matchKeys(text) != nil  ->
         match = RegexMatcher.matchKeys(text)
         rest = Regex.replace(~r/^[ ]*[^\r\n:]+?\s*:/,text,"")
         [match, rest]
+
       
       RegexMatcher.matchBracket(text) != nil  ->
         match = RegexMatcher.matchBracket(text)
         rest = Regex.replace(~r/\[|\]/,text,"")
         [match, rest]
         
-        RegexMatcher.matchStrings(text) != nil  ->
-          match = RegexMatcher.matchStrings(text)
-          rest = Regex.replace(~r/".*?"/,text,"")
+
+      RegexMatcher.matchStrings(text) != nil  ->
+        match = RegexMatcher.matchStrings(text)
+        rest = Regex.replace(~r/".*?"/,text,"")
+        [match, rest]
+          
+      
+      RegexMatcher.matchOperators(text) != nil  ->
+        match = RegexMatcher.matchOperators(text)
+        rest = Regex.replace(~r/true|false|,|null/,text,"")
+        [match, rest]
+            
+            
+      RegexMatcher.matchNumbers(text) != nil  ->
+        match = RegexMatcher.matchNumbers(text)
+        rest = Regex.replace(~r/-?\d+\.?\d*([eE]?[-\+]?\d+)?/,text,"")
+        [match, rest]
+        
+
+      RegexMatcher.matchObject(text) != nil  ->
+          match = RegexMatcher.matchObject(text)
+          rest = Regex.replace(~r/\{|\}/,text,"")
           [match, rest]
-          
-          
-          RegexMatcher.matchOperators(text) != nil  ->
-            match = RegexMatcher.matchOperators(text)
-            rest = Regex.replace(~r/true|false|,|null/,text,"")
-            [match, rest]
-            
-            
-          RegexMatcher.matchNumbers(text) != nil  ->
-            match = RegexMatcher.matchNumbers(text)
-            rest = Regex.replace(~r/-?\d+\.?\d*([eE]?[-\+]?\d+)?/,text,"")
-            [match, rest]
-            
-          RegexMatcher.matchObject(text) != nil  ->
-              match = RegexMatcher.matchObject(text)
-              rest = Regex.replace(~r/\{|\}/,text,"")
-              [match, rest]
+      
+      # RegexMatcher.matchSpaces(text) != nil  ->
+      #     match = RegexMatcher.matchObject(text)
+      #     rest = Regex.replace(~r/^\s+/,text,"")
+      #     IO.puts "space here"
+      #     [match, rest]
     
     
       true -> IO.puts text
@@ -132,7 +139,6 @@ defmodule SyntaxHighlighter do
   #Parameters: line, result and if the remaining line is empty or not 
 
   #Edge cases
-  defp do_parse_line("",result,_), do: "#{result}<br>"
   defp do_parse_line("\n",result,_), do: "#{result}<br>"
   defp do_parse_line(_,result,true), do: "#{result}<br>"
 
@@ -153,4 +159,4 @@ end
 
 
 
-IO.puts SyntaxHighlighter.parse_json("Test_files/example_5.json")
+IO.puts SyntaxHighlighter.parse_json("Test_files/example_4.json")
