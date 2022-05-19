@@ -26,6 +26,7 @@ h1,h2,h3{
 .output{
 
     padding: 1em;
+    padding-left: 5em;
     margin: 1em;
     background-color: #2d2b58;
     border-radius: 16px;
