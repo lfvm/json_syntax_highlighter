@@ -22,5 +22,6 @@ This will output an html fill inside your root folder.
 After doing the previous step, you can open the output file
 which will look something like this:
 
+<img width="1400" alt="Captura de Pantalla 2022-05-19 a la(s) 12 38 46" src="https://user-images.githubusercontent.com/57450093/169363163-edac3b4b-ad44-4bed-bcc7-864aef15a589.png">
 
-<img width="1402" alt="Captura de Pantalla 2022-05-19 a la(s) 12 08 10" src="https://user-images.githubusercontent.com/57450093/169357953-98ad9dde-6cef-4f01-80cb-81fa432715cb.png">
+
