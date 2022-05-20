@@ -28,8 +28,13 @@ which will look something like this:
 ## The types of tokens that we will be using are:
 
 Number - a symbol that expresses a float or an interger
+
 Operator - the symbols that we use to make arithmetic operations
+
 Bracket - the symbols that are used for separation '[ ]'
+
 Key - it is a piece of information that is used for retrieving some data
+
 String - a combination of letters that conform words
+
 Object -  An element (or instance) of a class
