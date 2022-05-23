@@ -3,7 +3,7 @@
 
 Script that reads a json file, and outputs an html that highlihts different tokens of the json 
 like keys, values, braces, etc.     
-The html output will look like the following picture
+The html output will look like the following picture:
 
 <img width="1400" alt="Captura de Pantalla 2022-05-19 a la(s) 12 38 46" src="https://user-images.githubusercontent.com/57450093/169363163-edac3b4b-ad44-4bed-bcc7-864aef15a589.png">
 
