@@ -44,7 +44,7 @@ Since the progrm needs to parse every line from the json file, the space complex
 n being the number of lines of the file.
 
 And the time complexity will depend on the number of lines inside the file as well as the lenght of each line,
-that would be O(n * l)
+that would be O(n * l), n
 being the number of lines and l being the lenght of each line.
 
 
