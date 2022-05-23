@@ -32,6 +32,8 @@ will be transdormed into:
    <span class="key">"hello":</span><span class="string">"world"<span>
 ```
 
+finally the line will be inserted into an output html file witch has a linked css sheet that stablishes different colors for each span class
+
 ## Ethical consequences of this Project
 
 As we have seen throughout history, technology has had some major consequences and ethical implications for the human race, and we, as software engineers, need to keep a good ethical record for the wellbeing of our careers and the
