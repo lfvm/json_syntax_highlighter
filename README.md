@@ -42,6 +42,6 @@ Object -  An element (or instance) of a class
 ## Ethical consequences of this Project
 
 As we have seen throughout history, technology has had some major consequences and ethical implications for the human race, and we, as software engineers, need to keep a good ethical record for the wellbeing of our careers and the
-Safeguarding of the technology we are creating.
+safeguarding of the technology we are creating.
 This project is not the exception, though this may be seen as a small program with no ethical consequences, it actually has some moral questions and ethic dilemmas to be resolved.
 A small example to illustrate this could be that if this simple tool for syntax highlighting got on the wrong hands it could be potentially dangerous, people could use it to program their own malware and affect others through our own code. We think the solution to all these ethical dilemmas would be to protect the code and not make it accessible to all. By making sure to only give code accessibility to the people of who we are certain that will put the code to good use.
