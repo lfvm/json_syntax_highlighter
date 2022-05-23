@@ -4,20 +4,25 @@
 Script that reads a json file, and outputs an html that highlihts different tokens of the json 
 like keys, values, braces, etc.
 
+### How does the algorithm works?
 
-## The types of tokens that we will be using are:
 
-Number - a symbol that expresses a float or an interger
+To parse a json document, the algorithm most be able to recognize different tokens that represents its content, in our case,
+the tokens used for this project are the following:
 
-Operator - the symbols that we use to make arithmetic operations
+- Number - a symbol that expresses a float or an interger
 
-Bracket - the symbols that are used for separation '[ ]'
+- Operator - the symbols that we use to make arithmetic operations
 
-Key - it is a piece of information that is used for retrieving some data
+- Bracket - the symbols that are used for separation '[ ]'
 
-String - a combination of letters that conform words
+- Key - it is a piece of information that is used for retrieving some data
 
-Object -  An element (or instance) of a class
+- String - a combination of letters that conform words
+
+- Object -  Symbols used to represent a js object '{ }'
+
+
 
 ## Ethical consequences of this Project
 
