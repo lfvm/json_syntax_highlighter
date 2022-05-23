@@ -6,7 +6,6 @@ like keys, values, braces, etc.
 
 ### How does the algorithm works?
 
-
 To parse a json document, the algorithm most be able to recognize different tokens that represents its content, in our case,
 the tokens used for this project are the following:
 
