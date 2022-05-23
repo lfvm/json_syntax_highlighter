@@ -37,7 +37,15 @@ will be transdormed into:
 
 finally the line will be inserted into an output html file which has a linked css sheet that stablishes different colors for each span class
 
-### Algorithm time and space complexity
+### Algorithm time and space complexity:
+
+The algorith uses recursion, this means that more memory will be used when te program is runed.
+Since the progrm needs to parse every line from the json file, the space complexity would be: O(n),
+n being the number of lines of the file.
+
+And the time complexity will depend on the number of lines inside the file as well as the lenght of each line,
+that would be O(n * l)
+being the number of lines and l being the lenght of each line.
 
 
 
