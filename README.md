@@ -32,7 +32,7 @@ In order to do this parsing, the script analizes every line of the file, and use
 will be transdormed into:
 
 ```bash
-   <span class="key">"hello":</span><span class="string">"world"<span>
+   <span class="key">"hello":</span><span class="string">"world"</span>
 ```
 
 finally the line will be inserted into an output html file which has a linked css sheet that stablishes different colors for each span class
