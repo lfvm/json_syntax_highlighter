@@ -49,7 +49,9 @@ being the number of lines and l being the lenght of each line.
 
 
 
-## Ethical consequences of this Project
+## Conclutions
+
+The algorithm has room for improvement, specially, the time complexity could be reduced if loops where used instead of recurssion, however, using recursion makes the code a lot more simple and easy to read. 
 
 As we have seen throughout history, technology has had some major consequences and ethical implications for the human race, and we, as software engineers, need to keep a good ethical record for the wellbeing of our careers and the
 safeguarding of the technology we are creating.
