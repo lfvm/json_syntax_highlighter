@@ -21,7 +21,16 @@ the tokens used for this project are the following:
 
 - Object -  Symbols used to represent a js object '{ }'
 
+In order to do this parsing, the script analizes every line of the file, and uses regular expressions to find the previous tokens, then the line will be formated as an html string, for example:
 
+```bash
+  "hello": "world"
+```
+will be transdormed into:
+
+```bash
+   <span class="key">"hello":</span><span class="string">"world"<span>
+```
 
 ## Ethical consequences of this Project
 
