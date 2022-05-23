@@ -32,7 +32,7 @@ will be transdormed into:
    <span class="key">"hello":</span><span class="string">"world"<span>
 ```
 
-finally the line will be inserted into an output html file witch has a linked css sheet that stablishes different colors for each span class
+finally the line will be inserted into an output html file which has a linked css sheet that stablishes different colors for each span class
 
 ## Ethical consequences of this Project
 
