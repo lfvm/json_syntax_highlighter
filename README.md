@@ -39,7 +39,7 @@ finally the line will be inserted into an output html file which has a linked cs
 
 ### Algorithm time and space complexity:
 
-The algorith uses recursion, this means that more memory will be used when te program is runed.
+The algorith uses recursion, this means that more memory will be used when te program is run.
 Since the progrm needs to parse every line from the json file, the space complexity would be: O(n),
 n being the number of lines of the file.
 
