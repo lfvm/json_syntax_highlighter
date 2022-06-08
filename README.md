@@ -51,7 +51,7 @@ Then both functions execution times where measured and every time the reuslt sho
 
 
 
-As we can see in the previous image, the time difference is not much, however this is only because the number of files is small. If we had a sample of more than 1000 files, we should be able to see how de difference gets bigger as the sample grows. Proving that concurrent programming can be very useful when trying to solve many problems at the same time.
+As we can see in the previous image, the time difference is not much, however this is only because the number of files is small. If we had a sample of more than 1000 files, we should be able to see how the time difference gets bigger as the sample grows. Proving that concurrent programming can be very useful when trying to solve many problems at the same time.
 
 
 
