@@ -74,9 +74,9 @@ defmodule RegexMatcher do
 
 
   def matchSpaces(text) do 
-    match = Regex.run(~r/^\s+/,text)
+    match = Regex.run(~r/[ \t]/,text)
     if match != nil do
-      "<span#{match}</span>"
+      match
     else 
       nil
     end

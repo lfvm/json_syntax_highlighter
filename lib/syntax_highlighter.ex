@@ -29,7 +29,14 @@ defmodule SyntaxHighlighter do
   def matchJson(text) do
     
     cond do
-    
+
+
+      RegexMatcher.matchObject(text) != nil  ->
+        match = RegexMatcher.matchObject(text)
+        rest = Regex.replace(~r/\{|\}/,text,"")
+        [match, rest]
+
+
       RegexMatcher.matchKeys(text) != nil  ->
         match = RegexMatcher.matchKeys(text)
         rest = Regex.replace(~r/"[^"]+"\s*:,?/,text,"")
@@ -60,16 +67,6 @@ defmodule SyntaxHighlighter do
         [match, rest]
         
 
-      RegexMatcher.matchObject(text) != nil  ->
-          match = RegexMatcher.matchObject(text)
-          rest = Regex.replace(~r/\{|\}/,text,"")
-          [match, rest]
-      
-      # RegexMatcher.matchSpaces(text) != nil  ->
-      #     match = RegexMatcher.matchObject(text)
-      #     rest = Regex.replace(~r/^\s+/,text,"")
-      #     IO.puts "space here"
-      #     [match, rest]
     
     
       true -> IO.puts text
@@ -80,24 +77,23 @@ defmodule SyntaxHighlighter do
 
 
 
-
-  """
-  Main function of the program, reads each line of the json file and maps it to 
-  the function parse_line wich returns the same line but in html format.
-
-  Each line will be stored in a list, and after every line is parsed, the list 
-  is joined using empty spaces which creates a string containing all the lines.
-
-  Finally the result string is appended to an html file which will be the final output 
-  """
-
-  def parse_json(in_filename) do
+  
+  
+    """
+    Main function of the program, reads each line of the json file and maps it to 
+    the function parse_line wich returns the same line but in html format.
+  
+    Each line will be stored in a list, and after every line is parsed, the list 
+    is joined using empty spaces which creates a string containing all the lines.
+  
+    Finally the result string is appended to an html file which will be the final output 
+    """
+  def parse_json(in_filename, out_filename) do
     #Reads each line and converts them to html
     lines =
       in_filename
       |> File.stream!()
       |> Enum.map(&parse_line/1)
-      |> IO.inspect()
       |> Enum.join("\n")
 
     #Get and format current date 
@@ -105,27 +101,27 @@ defmodule SyntaxHighlighter do
     date = Enum.join [today.year, today.month, today.day], "/"
     #Result string that will be appended to the html file
     file = """
-      <!DOCTYPE html>
-      <html>
-        <head>
-          <title>JSON Code</title>
-          <link rel="stylesheet" href="token_colors.css">
-        </head>
-        <body>
-          <h1>JSON Highlighter</h1>
-          <h2>Fernando Valdeon, Salomon Dabbah</h2>
-          <h3>Date: #{date}</h3>
-          <div class="output">
-            <h3 id='output'>Output:</h3>
-            <pre>
-              #{lines}
-            </pre>
-          </div>
-      </body>
-      </html>
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <title>JSON Code</title>
+    <link rel="stylesheet" href="token_colors.css">
+    </head>
+    <body>
+    <h1>JSON Highlighter</h1>
+    <h2>Fernando Valdeon, Salomon Dabbah</h2>
+    <h3>Date: #{date}</h3>
+    <div class="output">
+    <h3 id='output'>Output:</h3>
+    <pre>
+    #{lines}
+    </pre>
+    </div>
+    </body>
+    </html>
     """
     #Escribir string en un nuevo archivo 
-    File.write("output.html",file)
+    File.write(out_filename,file)
   end
 
 
@@ -153,10 +149,70 @@ defmodule SyntaxHighlighter do
   end
 
 
+
+
+  def parse_json_concurrent() do 
+
+    """
+      The function will read the json files and parse them concurrently, using the file name
+      and the output file name as parameters.
+    """
+    files = [
+      "Test_files/example_0.json",
+      "Test_files/example_1.json",
+      "Test_files/example_2.json",
+      "Test_files/example_3.json",
+      "Test_files/example_4.json",
+      "Test_files/example_5.json",
+    ]
+    |> Enum.map(&Task.async(fn -> parse_json(&1, "Output_files/concurrent_#{String.slice(&1, 11..19)}.html") end ))
+    |> Enum.map(&Task.await(&1))    
+  end
+
+
+  def parse_json_secuential() do 
+
+    """
+      The function will read the json files and parse them on by one
+    """
+    files = [
+      "Test_files/example_0.json",
+      "Test_files/example_1.json",
+      "Test_files/example_2.json",
+      "Test_files/example_3.json",
+      "Test_files/example_4.json",
+      "Test_files/example_5.json",
+    ]
+    do_parse_json_secuential(files)
+  end
+
+  defp do_parse_json_secuential([]), do: IO.puts "Finished"
+  defp do_parse_json_secuential([head | tail ]) do 
+    parse_json(head, "Output_files/secuential_#{String.slice(head, 11..19)}.html") 
+    do_parse_json_secuential(tail)
+  end
+
+
+  def measure(function) do
+    #Function that measures execution time of a function
+    function
+    |> :timer.tc
+    |> elem(0)
+    |> Kernel./(1_000_000)
+  end
+
+
+  def main() do
+    #Measure execution time of the function parse_json_concurrent and parse_json secuential
+    IO.puts "Execution time of concurrent function: #{measure(fn -> parse_json_concurrent() end )}"
+    IO.puts "Execution time of secuential function: #{measure(fn -> parse_json_secuential() end )}"
+
+  end
+
+
 end
 
 
 
 
-
-IO.puts SyntaxHighlighter.parse_json("Test_files/example_0.json")
+SyntaxHighlighter.main()
