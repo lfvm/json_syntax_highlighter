@@ -186,7 +186,7 @@ defmodule SyntaxHighlighter do
     do_parse_json_secuential(files)
   end
 
-  defp do_parse_json_secuential([]), do: IO.puts "Finished"
+  defp do_parse_json_secuential([]), do: IO.puts nil
   defp do_parse_json_secuential([head | tail ]) do 
     parse_json(head, "Output_files/secuential_#{String.slice(head, 11..19)}.html") 
     do_parse_json_secuential(tail)

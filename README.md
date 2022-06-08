@@ -48,6 +48,15 @@ that would be O(n * l), n
 being the number of lines and l being the lenght of each line.
 
 
+## Concurrency vs Secuential algorithm
+
+A concurrent version of this algorithm was created to parse several json files at the same time, to achieve this the algorithm
+uses multible subtask that divide the work in order to make it more efficient.
+To show how efficient this can be, a secuential function that also parses many files but in a secuential way was created.
+Then both functions execution times where measured and every time the reuslt showed that the concurrent version was slightly faster than the secuential:
+
+
+As we can see in the previous image, the time difference is not much, however this is only because the number of files is small. If we had a sample of more than 1000 files, we should be able to see how de difference gets bigger as the sample grows. Proving that concurrent programming can be very useful when trying to solve many problems at the same time
 
 ## Conclutions
 
